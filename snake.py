@@ -114,7 +114,7 @@ def game_over():
 
 window = Tk()
 window.title("Snek")
-window.resizable(False, False)
+window.resizable(True, True)
 
 score = 0
 direction = 'down'
