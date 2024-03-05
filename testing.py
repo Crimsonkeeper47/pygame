@@ -42,8 +42,8 @@ while True:
     if snake.center == food.center:
         food.center = get_random_position()
         length += 1
-    pg.draw.rect(screen, 'grey', food)
-    [pg.draw.rect(screen, 'red', segment) for segment in segments]
+    pg.draw.rect(screen, 'red', food)
+    [pg.draw.rect(screen, 'blue', segment) for segment in segments]
     time_now = pg.time.get_ticks()
     if time_now - time > time_step:
         time = time_now
