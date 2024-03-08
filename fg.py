@@ -23,6 +23,8 @@ blue = (0, 0, 255)
 
 font = pygame.font.SysFont(None, 40)
 
+again_rect = Rect(screen_width // 2 - 80, screen_height // 2, 160, 50)
+
 
 def draw_grid():
     bg = (255, 255, 200)
@@ -89,6 +91,7 @@ def draw_winner():
 
     again_text = "Play again?"
     again_img = font.render(again_text, True, blue)
+    pygame.draw.rect(screen, green, again_rect)
     screen.blit(again_img, (screen_width // 2 - 80, screen_height // 2 + 10))
 
 
@@ -115,6 +118,22 @@ while run:
                     player *= -1
                     check_winner()
 
+    if game_over == True:
+        draw_winner()
+        if event.type == pygame.MOUSEBUTTONDOWN and clicked == False:
+            clicked = True
+        if event.type == pygame.MOUSEBUTTONUP and clicked == True:
+            clicked = False
+            pos = pygame.mouse.get_pos()
+            if again_rect.collidepoint(pos):
+                markers = []
+                pos = []
+                player = 1
+                winner = 0
+                game_over = False
+                for x in range(3):
+                    row = [0] * 3
+                    markers.append(row)
     pygame.display.update()
 
 pygame.quit()
