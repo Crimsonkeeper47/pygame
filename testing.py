@@ -10,11 +10,12 @@ snake.center = get_random_position()
 length = 1
 segments = [snake.copy()]
 snake_dir = (0, 0)
-time, time_step = 50, 60
+time, time_step = 10, 80
 food = snake.copy()
 food.center = get_random_position()
 screen = pg.display.set_mode([window] * 2)
 clock = pg.time.Clock()
+speed = 100
 dirs = {pg.K_w: 1, pg.K_s: 1, pg.K_a: 1, pg.K_d: 1}
 while True:
     for event in pg.event.get():
@@ -42,6 +43,7 @@ while True:
     if snake.center == food.center:
         food.center = get_random_position()
         length += 1
+        speed += 60
     pg.draw.rect(screen, 'red', food)
     [pg.draw.rect(screen, 'blue', segment) for segment in segments]
     time_now = pg.time.get_ticks()
@@ -52,4 +54,4 @@ while True:
         segments = segments[-length:]
 
     pg.display.flip()
-    clock.tick(60)
+    clock.tick(speed)
